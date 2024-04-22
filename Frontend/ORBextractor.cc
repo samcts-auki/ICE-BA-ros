@@ -2787,42 +2787,42 @@ void ORBextractor::computeDescriptorsN512(const Mat& image,
   }
 }
 
-void ORBextractor::detectgf_compute(const cv::Mat& image,
-                                    const cv::Mat& mask,
-                                    std::vector<cv::KeyPoint>* keypoints )
-{
-    if (image.empty())
-        return;
-    assert(image.type() == CV_8UC1);
-//    vector<KeyPoint> allKeypoints;
+// void ORBextractor::detectgf_compute(const cv::Mat& image,
+//                                     const cv::Mat& mask,
+//                                     std::vector<cv::KeyPoint>* keypoints )
+// {
+//     if (image.empty())
+//         return;
+//     assert(image.type() == CV_8UC1);
+// //    vector<KeyPoint> allKeypoints;
 
-    vector<cv::Point2f> points_;
-    // perform OpenCV NEON version SHI-TOMASI detection
-    // cv::goodFeaturesToTrack(mvImagePyramid[it_level],
-    // points_this_level, nfeatures >> it_level, 0.01, 4);
-#ifndef __ARM_NEON__
-    // perform OpenCV desktop version SHI-TOMASI detection
+//     vector<cv::Point2f> points_this_level;
+//     // perform OpenCV NEON version SHI-TOMASI detection
+//     // cv::goodFeaturesToTrack(mvImagePyramid[it_level],
+//     // points_this_level, nfeatures >> it_level, 0.01, 4);
+// #ifndef __ARM_NEON__
+//     // perform OpenCV desktop version SHI-TOMASI detection
 
-    cv::goodFeaturesToTrack(image,points_, nfeatures, 0.004, 15,mask);//4个像素也太近了吧
-#else
-    // perform our own NEON version SHI-TOMASI detection
-      goodFeaturesToTrack_neon(mvImagePyramid[it_level],
-                               points_this_level, nfeatures >> it_level, 0.01, 4);
-#endif
-    keypoints->reserve(points_.size());
-    for (int i = 0; i < points_.size(); i++) {
-        cv::KeyPoint tmp;
-        tmp.pt = points_[i];
-        if(tmp.pt.x <= EDGE_THRESHOLD ||tmp.pt.x >=  (image.cols - EDGE_THRESHOLD) || tmp.pt.y >=  (image.rows - EDGE_THRESHOLD) || tmp.pt.y <= EDGE_THRESHOLD  )
-            continue;
-        tmp.octave = 0;
-        keypoints->push_back(tmp);
-    }
-    computeOrientation(image, umax, keypoints);
-// Compute the descriptors if requested
+//     cv::goodFeaturesToTrack(image,points_this_level, nfeatures, 0.004, 15,mask);//4个像素也太近了吧
+// #else
+//     // perform our own NEON version SHI-TOMASI detection
+//       goodFeaturesToTrack_neon(mvImagePyramid[it_level],
+//                                points_this_level, nfeatures >> it_level, 0.01, 4);
+// #endif
+//     keypoints->reserve(points_this_level.size());
+//     for (int i = 0; i < points_this_level.size(); i++) {
+//         cv::KeyPoint tmp;
+//         tmp.pt = points_[i];
+//         if(tmp.pt.x <= EDGE_THRESHOLD ||tmp.pt.x >=  (image.cols - EDGE_THRESHOLD) || tmp.pt.y >=  (image.rows - EDGE_THRESHOLD) || tmp.pt.y <= EDGE_THRESHOLD  )
+//             continue;
+//         tmp.octave = 0;
+//         keypoints->push_back(tmp);
+//     }
+//     computeOrientation(image, umax, keypoints);
+// // Compute the descriptors if requested
 
 
-}
+// }
 
 //fast角点提取+orb描述子计算,这里抄的老的orbslam版本,直接去看它的注释即可
 void ORBextractor::detect(const cv::Mat& image,

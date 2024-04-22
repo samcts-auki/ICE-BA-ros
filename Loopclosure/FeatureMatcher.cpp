@@ -186,7 +186,7 @@ namespace LC
                 cv::Mat imTrack;
                 int cols = img1.cols;
                 cv::hconcat(img1, img2, imTrack);//左右图拼接到一起
-                cv::cvtColor(imTrack, imTrack, CV_GRAY2RGB);
+                cv::cvtColor(imTrack, imTrack, cv::COLOR_GRAY2RGB);
 
 
                 for (int i = 0; i < matches.size(); ++i)
@@ -633,7 +633,7 @@ namespace LC
         cv::Mat imTrack;
         int cols = img1.cols;
         cv::hconcat(img1, img2, imTrack);//左右图拼接到一起
-        cv::cvtColor(imTrack, imTrack, CV_GRAY2RGB);
+        cv::cvtColor(imTrack, imTrack, cv::COLOR_GRAY2RGB);
 
 
         for (int i = 0; i < matches.size(); ++i)

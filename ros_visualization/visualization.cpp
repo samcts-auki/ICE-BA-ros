@@ -98,7 +98,7 @@ void pubTrackImage(const cv::Mat &cur_l_img, const cv::Mat &cur_r_img ,std::vect
     {
         int cols = cur_l_img.cols;
         cv::hconcat(cur_l_img, cur_r_img, imTrack);//左右图拼接到一起
-        cv::cvtColor(imTrack, imTrack, CV_GRAY2RGB);
+        cv::cvtColor(imTrack, imTrack, cv::COLOR_GRAY2RGB);
 
         std::vector<std::pair<cv::Point2f,cv::Point2f>> stereo_matches;
 
@@ -134,7 +134,7 @@ void pubTrackImage(const cv::Mat &cur_l_img, const cv::Mat &cur_r_img ,std::vect
     else
     {
         imTrack = cur_l_img.clone();
-        cv::cvtColor(imTrack, imTrack, CV_GRAY2RGB);
+        cv::cvtColor(imTrack, imTrack, cv::COLOR_GRAY2RGB);
     }
 
 

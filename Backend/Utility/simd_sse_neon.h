@@ -254,9 +254,9 @@ struct SIMD_ALIGN_DECLSPEC xp128f {
     val[3] = x3;
   }
   // broadcast acc to all lanes of xp128f
-  inline void vdup_all_lane(const float a) {
+  inline void vdup_all_lane(const float acc) {
 #ifdef __IBA_SSE__
-    vec = _mm_set1_ps(a);
+    vec = _mm_set1_ps(acc);
 #elif __ARM_NEON__
     vec = vdupq_n_f32(acc);
 #else

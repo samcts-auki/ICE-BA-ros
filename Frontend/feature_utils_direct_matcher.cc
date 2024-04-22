@@ -933,8 +933,8 @@ bool ImgFeaturePropagator::PropagateFeatures(
                 dbg_left_ = dbg_img_(cv::Rect(0, 0, mask_right_.cols, mask_right_.rows));
                 dbg_right_ = dbg_img_(cv::Rect(0, mask_right_.rows, mask_right_.cols, mask_right_.rows));
                 dbg_right_ptr_ = &dbg_right_;
-                cv::cvtColor(left_img, dbg_left_, CV_GRAY2RGB);
-                cv::cvtColor(right_img, dbg_right_, CV_GRAY2RGB);
+                cv::cvtColor(left_img, dbg_left_, cv::COLOR_GRAY2RGB);
+                cv::cvtColor(right_img, dbg_right_, cv::COLOR_GRAY2RGB);
                 cv::circle(dbg_left_, left_kp.pt, 2, cv::Scalar(0, 255, 0));
                 cv::putText(dbg_left_, boost::lexical_cast<std::string>(left_kp.class_id),
                             left_kp.pt, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 1);

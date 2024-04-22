@@ -585,7 +585,7 @@ void propagate_with_optical_flow(const std::vector<cv::Mat>& img_in_smooth_pyram
         t_of_us = of_timer.end();
         if (VLOG_IS_ON(2)) {//输出一下追踪信息
             cv::Mat img_color;
-            cv::cvtColor(img_in_smooth_small, img_color, CV_GRAY2BGR);
+            cv::cvtColor(img_in_smooth_small, img_color, cv::COLOR_GRAY2BGR);
             for (size_t i = 0; i < cur_small_img_pt.size(); i++) {
                 if (status[i]) {
                     // Draw the optical flow in blue//光流蓝色
@@ -672,7 +672,7 @@ void propagate_with_optical_flow(const std::vector<cv::Mat>& img_in_smooth_pyram
         t_of_refine_us = of_refine_timer.end();
         if (VLOG_IS_ON(2)) {
             cv::Mat img_color;
-            cv::cvtColor(img_in_smooth, img_color, CV_GRAY2BGR);
+            cv::cvtColor(img_in_smooth, img_color, cv::COLOR_GRAY2BGR);
             if (mask_with_of_out_ptr->rows != 0) {
                 // Plot the mask with dark gray
                 for (int i = 0; i < img_in_smooth.rows; ++i) {
@@ -977,7 +977,7 @@ bool FeatureTrackDetector::optical_flow_and_detect(const cv::Mat_<uchar>& mask/*
   t_redet_decision_us = redet_decision_timer.end();
   if (VLOG_IS_ON(2)) {
     cv::Mat img_color;
-    cv::cvtColor(img_in_smooth, img_color, CV_GRAY2BGR);
+    cv::cvtColor(img_in_smooth, img_color, cv::COLOR_GRAY2BGR);
     // Plot the mask with dark gray
     for (int i = 0; i < img_in_smooth.rows; ++i) {
       for (int j = 0; j < img_in_smooth.cols; ++j) {
@@ -1078,7 +1078,7 @@ bool FeatureTrackDetector::optical_flow_and_detect(const cv::Mat_<uchar>& mask/*
   if (VLOG_IS_ON(2)) {
     CHECK_EQ(key_pnts_ptr->size(), orb_feat_OF.rows + orb_feat_new.rows);
     cv::Mat img_color;
-    cv::cvtColor(img_in_smooth, img_color, CV_GRAY2BGR);
+    cv::cvtColor(img_in_smooth, img_color, cv::COLOR_GRAY2BGR);
     // Draw OF features in blue
     for (int i = 0; i < orb_feat_OF.rows; i++) {
       cv::circle(img_color, (*key_pnts_ptr)[i].pt, 2, cv::Vec3b(255, 0, 0));

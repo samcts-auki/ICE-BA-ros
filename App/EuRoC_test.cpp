@@ -642,7 +642,7 @@ int main(int argc, char** argv) {
     VLOG(0) << " start detection at ts = " << fs::path(img_file_paths[it_img]).stem().string();
     auto read_img_start = std::chrono::high_resolution_clock::now();
     cv::Mat img_in_raw;
-    img_in_raw = cv::imread(img_file_paths[it_img], CV_LOAD_IMAGE_GRAYSCALE);//读取左相机图片
+    img_in_raw = cv::imread(img_file_paths[it_img], cv::ImreadModes::IMREAD_GRAYSCALE);//读取左相机图片
     CHECK_EQ(img_in_raw.rows, duo_calib_param.Camera.img_size.height);
     CHECK_EQ(img_in_raw.cols, duo_calib_param.Camera.img_size.width);
     cv::Mat img_in_smooth;
@@ -687,7 +687,7 @@ int main(int argc, char** argv) {
     {//读取右目相机,一样做降噪处理
       if (!slave_img_file_paths[it_img].empty()) {
         cv::Mat slave_img_in;
-        slave_img_in = cv::imread(slave_img_file_paths[it_img], CV_LOAD_IMAGE_GRAYSCALE);
+        slave_img_in = cv::imread(slave_img_file_paths[it_img], cv::ImreadModes::IMREAD_GRAYSCALE);
         cv::blur(slave_img_in, slave_img_smooth, cv::Size(3, 3));
       }
     }
