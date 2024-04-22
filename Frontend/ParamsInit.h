@@ -88,7 +88,7 @@ void load_Parameters(const std::string &config_path,XP::DuoCalibParam &calib_par
     std::cout<<"image0_topic: "<<FLAGS_image0_topic<<std::endl
              <<"image1_topic: "<<FLAGS_image1_topic<<std::endl
              <<"imu_topic: "<<FLAGS_imu_topic<<std::endl;
-
+    
     if(FLAGS_stereo)
         FLAGS_iba_param_path = "../config/config_of_stereo.txt";
     else
@@ -177,9 +177,6 @@ void load_Parameters(const std::string &config_path,XP::DuoCalibParam &calib_par
     }
     Tbc0 = b_t_c[0];
     T_Cl_Cr_d = b_t_c[0].inverse() * b_t_c[1];
-
-
-    std::cout<<"fisheye?"<<calib_param.Camera.fishEye<<std::endl;
 
     // ASL {B}ody frame is the IMU
     // {D}evice frame is the left camera

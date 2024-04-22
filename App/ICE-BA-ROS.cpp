@@ -486,7 +486,7 @@ int main(int argc, char** argv)
     try {//输出标定参数（内外参,立体矫正,去完畸变后的映射）
         load_Parameters(FLAGS_config_file, duo_calib_param);
     } catch (...){
-        LOG(ERROR) << "Load calibration file error";
+        LOG(ERROR) << "Load calibration file error\n file: "<< FLAGS_config_file << std::endl;
         return -1;
     }
 
